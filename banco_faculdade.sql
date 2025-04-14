@@ -88,21 +88,24 @@ CREATE TABLE aluno(
  (1005, 'Prof. Igor', 'Doutor');
  
  INSERT INTO turma (id, cod, ano, semestre, siape) VALUES
- (11, 1, '2024-01-01', '1', 1004), -- BD2
- (12, 1, '2024-01-01', '1', 1001), -- BD3
- (10, 1, '2024-01-01', '1', 1000), -- BD1
+ (11, 1, '2024-01-01', '1', 1004), 
+ (12, 1, '2024-01-01', '1', 1001), 
+ (10, 1, '2024-01-01', '1', 1000), 
  (14, 1, '2024-01-01', '1', 1002),
  (15, 1, '2024-01-01', '1', 1003),
- (16, 1, '2024-01-01', '1', 1005);
+ (16, 1, '2024-01-01', '1', 1005),
+ (14, 1, '2024-01-01', '2', 1005);
  
  INSERT INTO matricula (id_aluno, id, cod, ano, semestre) VALUES
- (1, 11, 1, '2024-01-01', '1'), -- Alice em BD2
- (2, 12, 1, '2024-01-01', '1'), -- Bruno em BD3
- (3, 14, 1, '2024-01-01', '1'), -- Carlos em BD1
- (3, 11, 1, '2024-01-01', '1'), -- Carlos também em BD2
+ (1, 11, 1, '2024-01-01', '1'), 
+ (2, 12, 1, '2024-01-01', '1'), 
+ (3, 14, 1, '2024-01-01', '1'), 
+ (3, 11, 1, '2024-01-01', '1'), 
  (4, 14, 1, '2024-01-01', '1'),
  (4, 15, 1, '2024-01-01', '1'),
  (5, 16, 1, '2024-01-01', '1'),
+ (7, 14, 1, '2024-01-01', '2'),
+ (8, 14, 1, '2024-01-01', '1'),
  (6, 12, 1, '2024-01-01', '1');
  
  SELECT aluno.nome, disciplina.nome
@@ -126,7 +129,8 @@ AND matricula.semestre = turma.semestre
 JOIN disciplina ON turma.id = disciplina.id
 JOIN professor ON turma.siape = professor.siape
 WHERE disciplina.nome = 'Estrutura de Dados' 
-AND professor.nome = 'Prof. Isabel';
+AND professor.nome = 'Prof. Isabel'
+AND matricula.semestre = '2';
 
 
 DROP TABLE IF EXISTS matricula CASCADE;
