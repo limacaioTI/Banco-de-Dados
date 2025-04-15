@@ -33,7 +33,7 @@ CREATE TABLE aluno(
  CREATE TABLE turma(
    id INT,
    cod INT,
-   ano DATE,
+   ano char(4),
    semestre VARCHAR(100),
    siape INT,
    PRIMARY KEY(id, cod, ano, semestre),
@@ -45,7 +45,7 @@ CREATE TABLE aluno(
    id_aluno INT,
    id INT,
    cod INT,
-   ano DATE,
+   ano char(4),
    semestre VARCHAR(100),
    PRIMARY KEY(id_aluno, id, cod, ano, semestre),
    FOREIGN KEY(id_aluno) REFERENCES aluno(id),
@@ -88,25 +88,25 @@ CREATE TABLE aluno(
  (1005, 'Prof. Igor', 'Doutor');
  
  INSERT INTO turma (id, cod, ano, semestre, siape) VALUES
- (11, 1, '2024-01-01', '1', 1004), 
- (12, 1, '2024-01-01', '1', 1001), 
- (10, 1, '2024-01-01', '1', 1000), 
- (14, 1, '2024-01-01', '1', 1002),
- (15, 1, '2024-01-01', '1', 1003),
- (16, 1, '2024-01-01', '1', 1005),
- (14, 1, '2024-01-01', '2', 1005);
+ (11, 1, '2024', '1', 1004), 
+ (12, 1, '2024', '1', 1001), 
+ (10, 1, '2024', '1', 1000), 
+ (14, 1, '2024', '1', 1002),
+ (15, 1, '2024', '1', 1003),
+ (16, 1, '2024', '1', 1005),
+ (14, 1, '2024', '2', 1005);
  
  INSERT INTO matricula (id_aluno, id, cod, ano, semestre) VALUES
- (1, 11, 1, '2024-01-01', '1'), 
- (2, 12, 1, '2024-01-01', '1'), 
- (3, 14, 1, '2024-01-01', '1'), 
- (3, 11, 1, '2024-01-01', '1'), 
- (4, 14, 1, '2024-01-01', '1'),
- (4, 15, 1, '2024-01-01', '1'),
- (5, 16, 1, '2024-01-01', '1'),
- (7, 14, 1, '2024-01-01', '2'),
- (8, 14, 1, '2024-01-01', '1'),
- (6, 12, 1, '2024-01-01', '1');
+ (1, 11, 1, '2024', '1'), 
+ (2, 12, 1, '2024', '1'), 
+ (3, 14, 1, '2024', '1'), 
+ (3, 11, 1, '2024', '1'), 
+ (4, 14, 1, '2024', '1'),
+ (4, 15, 1, '2024', '1'),
+ (5, 16, 1, '2024', '1'),
+ (7, 14, 1, '2024', '2'),
+ (8, 14, 1, '2024', '1'),
+ (6, 12, 1, '2024', '1');
  
  SELECT aluno.nome, disciplina.nome
  FROM aluno JOIN matricula ON aluno.id = matricula.id_aluno
@@ -135,6 +135,12 @@ AND matricula.semestre = '2';
 SELECT COUNT(turma.id)
 FROM turma JOIN professor ON  turma.siape = professor.siape
 WHERE professor.titulacao = 'Mestre';
+
+SELECT professor.siape
+FROM professor JOIN turma ON professor.siape = turma.siape
+JOIN disciplina ON turma.id = disciplina.id 
+JOIN curso ON disciplina.id_curso = curso.id
+WHERE curso.id != 1;
 
 
 DROP TABLE IF EXISTS matricula CASCADE;
