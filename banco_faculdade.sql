@@ -94,7 +94,8 @@ CREATE TABLE aluno(
  (14, 1, '2024', '1', 1002),
  (15, 1, '2024', '1', 1003),
  (16, 1, '2024', '1', 1005),
- (14, 1, '2024', '2', 1005);
+ (14, 1, '2024', '2', 1005),
+ (19, 1, '2023', '2', 1005);
  
  INSERT INTO matricula (id_aluno, id, cod, ano, semestre) VALUES
  (1, 11, 1, '2024', '1'), 
@@ -141,6 +142,13 @@ FROM professor JOIN turma ON professor.siape = turma.siape
 JOIN disciplina ON turma.id = disciplina.id 
 JOIN curso ON disciplina.id_curso = curso.id
 WHERE curso.id != 1;
+
+SELECT turma.id
+FROM turma
+JOIN disciplina ON turma.id = disciplina.id
+WHERE turma.ano = '2023'
+AND turma.semestre = '2'
+AND disciplina.ch >= 60;
 
 
 DROP TABLE IF EXISTS matricula CASCADE;
