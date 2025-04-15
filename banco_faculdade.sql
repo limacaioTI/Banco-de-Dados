@@ -132,6 +132,10 @@ WHERE disciplina.nome = 'Estrutura de Dados'
 AND professor.nome = 'Prof. Isabel'
 AND matricula.semestre = '2';
 
+SELECT COUNT(turma.id)
+FROM turma JOIN professor ON  turma.siape = professor.siape
+WHERE professor.titulacao = 'Mestre';
+
 
 DROP TABLE IF EXISTS matricula CASCADE;
 DROP TABLE IF EXISTS turma CASCADE;
