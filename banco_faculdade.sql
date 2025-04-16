@@ -109,6 +109,18 @@ CREATE TABLE aluno(
  (8, 14, 1, '2024', '1'),
  (6, 12, 1, '2024', '1');
  
+CREATE INDEX idx_matricula_composta ON matricula (id, cod, ano, semestre);
+CREATE INDEX idx_matricula_semestre ON matricula (semestre);
+
+CREATE INDEX idx_disciplina_nome ON disciplina (nome);
+CREATE INDEX idx_disciplina_id_curso ON disciplina (id_curso);
+CREATE INDEX idx_disciplina_ch ON disciplina (ch);
+
+CREATE INDEX idx_professor_nome ON professor (nome);
+CREATE INDEX idx_professor_titulacao ON professor (titulacao);
+
+CREATE INDEX idx_turma_ano_semestre ON turma (ano, semestre);
+ 
  SELECT aluno.nome, disciplina.nome
  FROM aluno JOIN matricula ON aluno.id = matricula.id_aluno
  JOIN turma ON matricula.id = turma.id
